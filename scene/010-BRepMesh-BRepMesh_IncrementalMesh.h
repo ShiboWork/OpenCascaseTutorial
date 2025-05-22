@@ -19,9 +19,9 @@
 #include "TutorialWindow.h"
 #include "CodeHintAction.h"
 
-class BRepMesh001 : public BaseScene, public VisSceneComponents, public TutorialWindow {
+class BRepMesh010 : public BaseScene, public VisSceneComponents, public TutorialWindow {
 public:
-    BRepMesh001() {
+    BRepMesh010() {
         openTutorialWindow();
     }
      
@@ -77,6 +77,8 @@ private:
         mesher.SetShape(meshShape);
         mesher.ChangeParameters() = meshParams;
         mesher.Perform();
+
+        hintMgr.AddHint("Mesh", "mesher.Perform();");
 
         // 添加网格生成验证
         if (!mesher.IsDone()) {
@@ -148,6 +150,9 @@ private:
             }
             ImGui::Text("Total Triangles: %d", totalTriangles);
         }
+
+		// 渲染提示窗口
+        hintMgr.RenderWindow();
     }
 
     void drawTriangulations(const TopoDS_Shape& shape, const Handle(AIS_InteractiveContext)& context) {
