@@ -1,0 +1,2 @@
+﻿  ScenSelector.cpp
+LINK : fatal error LNK1181: 无法打开输入文件“TKernel.lib”

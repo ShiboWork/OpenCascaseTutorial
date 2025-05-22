@@ -16,30 +16,29 @@ project "OcctImgui"
     -- Header files.
     includedirs
     {
-        "D:/OpenCASCADE-7.7.0/opencascade-7.7.0/inc", 
-        "D:/glfw-3.3.8/include"
+        "C:/OOCT7.8/OCCT-7_8_0-build/inc", 
+        "C:/glfw-3.4/include"
     }
-    
+
     -- Library files.
     links
     {
-        "TKernel", "TKMath", "TKG2d", "TKG3d", "TKGeomBase", "TKGeomAlgo", "TKBRep", "TKTopAlgo", "TKPrim", "TKMesh", "TKService", "TKOpenGl", "TKV3d", 
-        "glfw3"
+        "TKernel", "TKMath", "TKG2d", "TKG3d", "TKGeomBase", "TKGeomAlgo", "TKBRep", "TKTopAlgo", "TKPrim", "TKMesh", "TKService", "TKOpenGl", "TKV3d", "glfw3"
     }
-
+    
     filter "configurations:Debug"
       defines { "DEBUG" }
       symbols "On"
       
       libdirs
       {
-          "D:/OpenCASCADE-7.7.0/opencascade-7.7.0/win64/vc14/libd", 
-          "D:/glfw-3.3.8/libd"
+          "C:/OOCT7.8/OCCT-7_8_0-build/win64/vc14/libd", 
+          "C:/glfw-3.4/lib-vc2022"
       }
       
       debugenvs
       {
-          "path=%path%;D:/OpenCASCADE-7.7.0/opencascade-7.7.0/win64/vc14/bind"
+          "path=%path%;C:/OOCT7.8/OCCT-7_8_0-build/win64/vc14/bind;$(ProjectDir)3rdParty"
       }
 
    filter "configurations:Release"
@@ -48,11 +47,14 @@ project "OcctImgui"
       optimize "On"
       libdirs
       {
-          "D:/OpenCASCADE-7.7.0/opencascade-7.7.0/win64/vc14/lib", 
-          "D:/glfw-3.3.8/lib"
+          "C:/OOCT7.8/OCCT-7_8_0-build/win64/vc14/lib", 
+          "C:/glfw-3.4/lib-vc2022"
       }
       
       debugenvs
       {
-          "path=%path%;D:/OpenCASCADE-7.7.0/opencascade-7.7.0/win64/vc14/bin"
+          "path=%path%;C:/OOCT7.8/OCCT-7_8_0-build/win64/vc14/bin;3rdParty"
       }
+
+-- 包含 Scene 文件夹中的 premake5.lua 文件
+include "Scene/premake5.lua"

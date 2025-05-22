@@ -24,6 +24,10 @@
 #define _GlfwOcctView_Header
 
 #include "GlfwOcctWindow.h"
+#include "scene/BaseScene.h"
+#include "scene/SceneSelector.h"
+
+#include "Log.h"
 
 #include <AIS_InteractiveContext.hxx>
 #include <AIS_ViewController.hxx>
@@ -42,6 +46,11 @@ public:
     //! Main application entry point.
     void run();
 
+public:
+    //! Show docker space
+    void ShowAppDockSpace();
+
+    //! @name GLWF callbacks
 private:
 
     //! Create GLFW window.
@@ -65,8 +74,8 @@ private:
     //! Clean up before .
     void cleanup();
 
-    //! @name GLWF callbacks
 private:
+
     //! Window resize event.
     void onResize(int theWidth, int theHeight);
 
@@ -78,6 +87,12 @@ private:
 
     //! Mouse move event.
     void onMouseMove(int thePosX, int thePosY);
+
+    //@name Scene related function 
+private:
+    void autoClearPreviousScene();
+
+    void renderLogWindow();
 
     //! @name GLWF callbacks (static functions)
 private:
@@ -123,6 +138,15 @@ private:
     Handle(GlfwOcctWindow) myOcctWindow;
     Handle(V3d_View) myView;
     Handle(AIS_InteractiveContext) myContext;
+
+private:
+    std::shared_ptr<BaseScene> currentScene;
+    std::shared_ptr<BaseScene> previousScene = nullptr;
+    SceneSelector sceneSelector;
+    int sceneIndex = 0;
+
+    // Log
+    OCCImguiTutorial::Log m_log;
 
 };
 

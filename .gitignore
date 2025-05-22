@@ -1,0 +1,14 @@
+# vs
+.vs/
+**.vcxproj
+**.filters
+**.user
+
+# build
+build/*
+*.db
+*.pdb
+*.ilk
+*.tlog
+*.ipch
+*.suo
